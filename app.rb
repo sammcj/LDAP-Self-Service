@@ -78,7 +78,7 @@ post '/login/attempt' do
 
   # Define operations to be performed
   ops = [
-    [:replace, :telephoneNumber, [newpw]], #TODO replace with password when ready
+    [:replace, :userPassword, [newpw]],
   ]
 
   # Modify user based on operations
