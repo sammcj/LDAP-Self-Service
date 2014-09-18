@@ -28,7 +28,13 @@ attrs: dn
 
 ### Install
 
-Run bundle install
+```
+bundle install
+thin install
+cp thin.yml /etc/thin/ldapss.yml
+/etc/init.d/thin start
+```
+
 ruby app.rb
 
 Note: Designed to have nginx with SSL proxying back to the app on localhost:4567
