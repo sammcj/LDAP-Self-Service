@@ -3,6 +3,15 @@ LDAP Self Service
 
 A small web based LDAP self-service portal
 
+
+### Requirements
+
+* sinatra
+* net-ldap
+* thin
+
+Tested with Ruby 2.1.1
+
 ### Configuration
 
 Enter your ldap settings in ldap.yml
