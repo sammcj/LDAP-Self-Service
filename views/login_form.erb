@@ -1,11 +1,10 @@
-<form action='/login/attempt' method='post' class="form-inline well" style="text-align:left;">
+<form action='/login/attempt' method='post' role="form" class="form-inline well" style="text-align:left;">
+  <p>Current Username and Password</p>
   <input type="text" name='username' placeholder="Username" autofocus>
+  <input type="password" name='currentpw' placeholder="Current Password">
+  <p style="padding-top: 5px;">New Password</p>
+  <input type="password" name='newpw' placeholder="New Password">
+  <input type="password" name='newpw2' placeholder="New Password Again" style="padding-bottom: 10px;">
   <br>
-  <input type="password" name='currentpw' placeholder="Current Password" style="margin-top: 20px;">
-  <br>
-  <input type="password" name='newpw' placeholder="New Password" style="margin-top: 20px;">
-  <br>
-  <input type="password" name='newpw2' placeholder="New Password Again">
-  <br><br>
-  <input class="btn primary" type='submit' value='Change Password'>
+  <input class="btn primary btn-danger" type='submit' value='Change Password'>
 </form>
