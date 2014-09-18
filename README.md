@@ -32,3 +32,7 @@ Run bundle install
 ruby app.rb
 
 Note: Designed to have nginx with SSL proxying back to the app on localhost:4567
+
+### Screenshot
+
+![screenshot](https://cloud.githubusercontent.com/assets/862951/4314643/e65020fa-3ee3-11e4-9c66-c936903ff09b.png)
