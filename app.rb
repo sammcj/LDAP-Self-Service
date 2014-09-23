@@ -1,8 +1,9 @@
-require 'rubygems'
+require 'iconv'
 require 'net/ldap'
+require 'rubygems'
 require 'sinatra'
-require 'yaml'
 require 'thin'
+require 'yaml'
 
 # Use thin as webserver listening on localhost:4567
 set :server, "thin"
@@ -52,11 +53,6 @@ post '/login/attempt' do
     auth = {}
     auth[:password] = currentpw
 
-    # Define LDAP operations to be performed
-    ops = [
-      [:replace, :userPassword, [newpw]],
-    ]
-
     # Check the new passwords match
     if newpw != newpw2
       raise "New passwords didn't match!"
@@ -65,6 +61,11 @@ post '/login/attempt' do
     # Retrieve account info for LDAP or AD
     if ldap_args[:type] == 'ldap'
       filter = Net::LDAP::Filter.eq("objectclass", "person")
+
+      # Define LDAP operations to be performed
+      ops = [
+        [:replace, :userPassword, [newpw]],
+      ]
 
       #Bind anonymously to lookup full dn of username
       auth[:method] = :anonymous
@@ -95,6 +96,20 @@ post '/login/attempt' do
       puts "LDAP Message: #{ldap.get_operation_result.message}"
 
     elsif ldap_args[:type] == 'ad'
+
+      def self.ct2uni(cleartextpwd)
+          quotepwd = '"' + cleartextpwd + '"'
+          unicodepwd = Iconv.iconv('UTF-16LE', 'UTF-8', quotepwd).first
+          return unicodepwd
+      end
+
+      oldUniPW = ct2uni( currentpw )
+      newUniPW = ct2uni( newpw )
+
+      ops = [
+        [ :delete, :unicodePwd, [oldUniPW] ],
+        [ :add, :unicodePwd, [newUniPW] ]
+      ]
 
       # Bind to AD
       ad = Net::LDAP.new(
