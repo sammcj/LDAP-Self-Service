@@ -19,11 +19,19 @@ Enter your ldap settings in ldap.yml
 The required settings are:
 
 ```
-host: your.ldap.server.com
-base: ou=People,dc=ldap,dc=server,dc=com
-port: 636
-encryption: simple_tls
-attrs: dn
+ldap:
+  host: your.ldap.server.com
+  base: ou=People,dc=ldap,dc=server,dc=com
+  port: 636
+  encryption: simple_tls
+  attrs: dn
+
+ad:
+  host: your.ldap.server.com
+  base: ou=People,dc=ldap,dc=server,dc=com
+  port: 636
+  encryption: simple_tls
+  attrs: dn
 ```
 
 ### Install
