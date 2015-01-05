@@ -98,9 +98,9 @@ post '/login/attempt' do
     elsif ldap_args[:type] == 'ad'
 
       def self.ct2uni(cleartextpwd)
-          quotepwd = '"' + cleartextpwd + '"'
-          unicodepwd = Iconv.iconv('UTF-16LE', 'UTF-8', quotepwd).first
-          return unicodepwd
+        quotepwd = '"' + cleartextpwd + '"'
+        unicodepwd = Iconv.iconv('UTF-16LE', 'UTF-8', quotepwd).first
+        return unicodepwd
       end
 
       oldUniPW = ct2uni( currentpw )
@@ -119,9 +119,8 @@ post '/login/attempt' do
 
       # Get the full DN of the username
       ad.search(
-        base:         treebase,
-        filter:       "sAMAccountName=#{username}",
-        return_result:true
+        base: treebase,
+        filter: "sAMAccountName=#{username}",
       ) do |entry |
         userpath = entry.dn
       end
