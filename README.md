@@ -3,6 +3,7 @@ LDAP Self Service
 
 A small web based LDAP self-service portal
 
+[![Code Climate](https://codeclimate.com/github/sammcj/LDAP-Self-Service/badges/gpa.svg)](https://codeclimate.com/github/sammcj/LDAP-Self-Service)
 
 ### Requirements
 
